@@ -53,3 +53,7 @@ log.txt
 TODO.md
 *.jld2
 .claude
+.agents
+
+apps
+Hs
