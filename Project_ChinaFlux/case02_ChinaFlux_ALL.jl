@@ -14,13 +14,6 @@ replace_missing!(FORCING)
 SITES_bad = ["CRO_制种玉米_临泽"]        # 无降雨驱动(P=0)，先跳过（见 Plan/TODO.md）
 SITES = setdiff(unique(FORCING.site), SITES_bad)        # 驱动文件即 31 站的权威清单
 
-# PRCP_SCALE = Dict(
-#   "CRO_冬小麦夏玉米_固城" => 1 / 29.1,  # h_max 430mm/hr，年 15791mm → ~543mm
-#   "CRO_水稻_盘锦" => 1 / 2.0,           # 小时为日累计的 2 倍
-#   "CRO_水稻_句容" => 1 / 4.5,           # 小时为日累计的 4~5 倍
-# )
-
-
 # 鲁棒列处理：仅重命名存在的列；保证列为 Float64（缺测→NaN），整列不存在→全 NaN
 rename_existing!(d, pairs) = rename!(d, filter(p -> first(p) in propertynames(d), pairs))
 # 元数据为手工维护：含 "NA" 等会把整列读成 String，统一转数值（不可解析→missing）
